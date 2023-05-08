@@ -2,6 +2,79 @@
 # Implementation of Binary Tree
 # A node only saves the references to its children
 #HOLAAAAAAAAAAAAAAAA
+
+#transition model for the markov chain below sir:
+
+def T(s1:State,a:Action, s2:State):
+    #now, since it is an stochastic mdp, there is some noise when taking an action a from state s, potentially transitioning to state s2 with some certainty
+    if a == "on": #for the action of turning the thermostat on...
+        if s1.temperature == 16:
+            if s2.temperature == 16:
+                return 0.3
+            elif s2.temperature == 16.5:
+                return 0.5
+            elif s2.temperature == 17:
+                return 0.2
+            else:
+                return 0.0
+        elif s1.temperature == 25:
+            if s2.temperature == 25:
+                return 0.9
+            elif s2.temperature == 24.5:
+                return 0.1
+            else:
+                return 0.0
+        elif s1.temperature == 24.5:
+            if s2.temperature == 25:
+                return 0.7
+            elif s2.temperature == 24.5
+                return 0.3
+            else:
+                return 0.0
+        else: #standard conditions for rest of current states when taking action "on"
+            if s2.temperature == s1.temperature+0.5:
+                return 0.5
+            elif s2.temperature == s1.temperature+1:
+                return 0.2
+            elif s2.temperature == s1.temperature:
+                return 0.2
+            elif s2.temperature == s1.temperature-0.5:
+                return 0.1
+            else:
+                return 0.0
+    elif a == "off":
+        if s1.temperature == 16:
+            if s2.temperature == 16:
+                return 0.9
+            elif s2.temperature == 16.5:
+                return 0.1
+            else:
+                return 0.0
+        elif s1.temperature == 25:
+            if s2.temperature == 25:
+                return 0.3
+            elif s2.temperature == 24.5:
+                return 0.7
+            else:
+                return 0.0
+        else:#standard conditions for rest of current states when taking action "off"
+            if s2.temperature == s1.temperature-0.5:
+                return 0.7
+            elif s2.temperature == s1.temperature+0.5:
+                return 0.1
+            elif s2.temperature == s1.temperature:
+                return 0.2
+            else:
+                return 0.0
+
+
+
+
+
+
+
+
+
 from slistH import SList
 
 

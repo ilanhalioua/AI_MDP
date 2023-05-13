@@ -29,9 +29,10 @@ def parse_file(file):
             elif line.startswith('actions:'):
                 # Extract the list of actions
                 action_names = re.findall(r'\b\w+\b', line)[1:]
-                print(action_names)
                 for name in action_names:
-                    actions.add(Action(name))
+                    action = Action(name)
+                    print(action)
+                    actions.add(action)
                 print(actions)
             # Match the line that starts with "costs:"
             elif line.startswith('costs:'):

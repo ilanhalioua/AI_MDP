@@ -59,4 +59,5 @@ def parse_file(file):
 
     return states, actions, costs, transitions
 
-states, actions, costs, transitions = parse_file('file')
+# Un-comment the line below and run this file if you want to check what the parser is doing 
+# states, actions, costs, transitions = parse_file('file')

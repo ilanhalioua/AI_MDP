@@ -45,12 +45,8 @@ def parse_file(file):
             elif line.startswith('transitions:'):
                 matches = re.findall(r'T\((\d+),(\d+),(\w)\) = (\d\.\d)', line)
                 for match in matches:
-                    if match[0] or match[1] == goal:
-                        g = 1
-                    else:
-                        g = 0
-                    p = State(match[0], g)
-                    q = State(match[1], g)
+                    p = State(match[0], 1 if match[0] == goal else 0)
+                    q = State(match[1], 1 if match[1] == goal else 0)
                     a = Action(match[2])
                     prob = float(match[3])
                     transition = Transition(p, q, a)

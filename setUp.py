@@ -11,7 +11,9 @@ def setUp_mdpSolver(file):
     return my_mdp
 
 
-'''###################################
+###################################
+'''
+# Specific example initialization -> ... -> mdp initialization
 
 # Initialization of individual states
 s1 = State(16, 0)

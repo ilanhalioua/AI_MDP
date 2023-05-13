@@ -1,5 +1,5 @@
 from MDP import MDP
-from FinalVersion.parser import parse_file
+from parser import parse_file
 
 def setUp_mdpSolver(file):
     # Parse the input file

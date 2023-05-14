@@ -53,7 +53,7 @@ class Transition:
         return hash((self.state_from, self.state_to, self.through))
 
     def __str__(self):
-        return f"Transition({self.state_from}, {self.through}, {self.state_to})"
+        return f"Transition({self.state_from}, {self.state_to}, {self.through})"
 
 
 class Cost:
@@ -84,13 +84,11 @@ class MDP:
         self.Actions = A  # set of action objects
         self.ImmediateCosts = IC  # dictionary where each key is an action object and values its associated cost
 
-    def ValueIteration(self) :
+    def ValueIteration(self):
         # solves the Bellman's Equations iteratively through the common fixed point method
         done = False
-        iters = 0
-        V = {key: 0 for key in self.States} # dictionary initialization where keys are states and values 0
+        V = {key: 0.0 for key in self.States} # dictionary initialization where keys are states and values 0
         while not done:  # (later we will determine a stopping criteria)
-            iters += 1  # increment the number of iterations done
             OldV = V.copy()
             for s in V:
                 if not s.goal:
@@ -100,23 +98,23 @@ class MDP:
                         v = self.ImmediateCosts[a]
                         for s_prime in self.States:
                             t = Transition(s, s_prime, a)
-                            v += self.Transitions[t] * OldV[s_prime]
+                            #check if this transition has nonzero probability of ocurring (otherwise, the addition is useless)
+                            if t in self.Transitions:
+                                v += self.Transitions[t] * OldV[s_prime]
                         if v < min:
                             min = v  # new minimum found
                     # now, update the value of current state s on V dictionary...
                     V[s] = min
-            '''if iters > 30:  # temporary stopping criteria-> until 15 iterations are done
-                done = True'''
-            if all(OldV[key] == V[key] for key in self.States):
+            if OldV == V:
                 done = True
         return V  # in the end , the dictionary V contains the values for all the states in the MDP object.
 
-        def OptimalPolicy(self, V = None):
+    def OptimalPolicy(self, V = None):
         if V == None:
             V = self.ValueIteration()
         OP = {s: None for s in self.States}
         for s in self.States:
-            if not s.goal:  # for all those states that are not goal states...
+            if not s.goal: #for all those states that are not goal states...
                 min = float('inf')
                 opt_action = None
                 for a in self.Actions:
@@ -124,9 +122,12 @@ class MDP:
                     for s_prime in self.States:
                         # for each state in the set of states, loop through all actions and compute weighted sum of values
                         t = Transition(s, s_prime, a)
-                        c += self.Transitions[t] * V[s_prime]
+                        # check if this transition has nonzero probability of ocurring (otherwise, the addition is useless)
+                        if t in self.Transitions:
+                            c += self.Transitions[t] * V[s_prime]
                     if c < min:
-                        opt_action = a  # update the optimal action found for the state s
+                        opt_action = a # update the optimal action found for the state s
+                        min = c
                 OP[s] = opt_action
         return OP  # in the end, the dictionary OP contains the optimal actions for all the sates in the MDP object
 

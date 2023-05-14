@@ -1,6 +1,6 @@
-from setUp import setUp_mdpSolver
+from setUp import setUp_mdpSolver, askFile
 
-file = input("Introduce name of file that contains your MDP problem: ")
+file = askFile()
 basic_mdp = setUp_mdpSolver(file)
 V = basic_mdp.ValueIteration()
 policy = basic_mdp.OptimalPolicy(V)

@@ -12,10 +12,11 @@ def setUp_mdpSolver(file):
 
 
 ###################################
-'''
+
 # Specific example initialization -> ... -> mdp initialization
 
 # Initialization of individual states
+'''
 s1 = State(16, 0)
 s2 = State(16.5, 0)
 s3 = State(17, 0)
@@ -80,4 +81,6 @@ my_mdp.PrintAll()
 
 Values = my_mdp.ValueIteration()
 for i in Values:
-    print(str(i) + " = " + str(Values[i]))'''
+    print(str(i) + " = " + str(Values[i]))
+
+'''

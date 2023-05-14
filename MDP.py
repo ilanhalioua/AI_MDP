@@ -53,7 +53,7 @@ class Transition:
         return hash((self.state_from, self.state_to, self.through))
 
     def __str__(self):
-        return f"Transition({self.state_from},{self.through} .{self.state_to})"
+        return f"Transition({self.state_from}, {self.through}, {self.state_to})"
 
 
 class Cost:

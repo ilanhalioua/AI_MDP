@@ -111,22 +111,24 @@ class MDP:
                 done = True
         return V  # in the end , the dictionary V contains the values for all the states in the MDP object.
 
-    def get_optimal_policy(self, V):
-        policy = {}
+        def OptimalPolicy(self, V = None):
+        if V == None:
+            V = self.ValueIteration()
+        OP = {s: None for s in self.States}
         for s in self.States:
-            if not s.goal:
-                min_value = float('inf')
-                best_action = None
+            if not s.goal:  # for all those states that are not goal states...
+                min = float('inf')
+                opt_action = None
                 for a in self.Actions:
-                    value = self.ImmediateCosts[a]
+                    c = self.ImmediateCosts[a]
                     for s_prime in self.States:
+                        # for each state in the set of states, loop through all actions and compute weighted sum of values
                         t = Transition(s, s_prime, a)
-                        value += self.Transitions[t] * V[s_prime]
-                    if value < min_value:
-                        min_value = value
-                        best_action = a
-                policy[s] = best_action
-        return policy
+                        c += self.Transitions[t] * V[s_prime]
+                    if c < min:
+                        opt_action = a  # update the optimal action found for the state s
+                OP[s] = opt_action
+        return OP  # in the end, the dictionary OP contains the optimal actions for all the sates in the MDP object
 
     def PrintAll(self):
         print("Set of states: ")

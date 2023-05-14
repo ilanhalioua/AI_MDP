@@ -1,7 +1,6 @@
 from MDP import State, Action, Transition
 import re
 
-
 def parse_file(file):
     # Initialize the list of transitions
     states = set()

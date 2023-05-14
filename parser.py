@@ -14,6 +14,7 @@ def parse_file(file):
         for line in f:
             # Match the line that starts with "states:"
             if line.startswith('states:'):
+                print()
                 # Use regular expressions to find all states in the line
                 goal = float(re.search(r'(\d+(?:\.\d+)?)\*', line).group(1))
                 matches = re.findall(r'(\d+\*?)', line)
@@ -24,25 +25,28 @@ def parse_file(file):
                     state = State(val, g)
                     print(state)
                     states.add(state)
-                print(states)
+                print("S = " + str(states))
             # Match the line that starts with "actions:"
             elif line.startswith('actions:'):
+                print()
                 # Extract the list of actions
                 action_names = re.findall(r'\b\w+\b', line)[1:]
                 for name in action_names:
                     action = Action(name)
                     print(action)
                     actions.add(action)
-                print(actions)
+                print("A = " + str(actions))
             # Match the line that starts with "costs:"
             elif line.startswith('costs:'):
+                print()
                 # Extract the costs
                 costs = re.findall(r'c\((\w+)\) = (\d+(?:\.\d+)?)', line)
                 # Convert the costs to a dictionary
-                costs = {action: float(cost) for action, cost in costs}
-                print(costs)
+                costs = {Action(action): float(cost) for action, cost in costs}
+                print("IC = " + str(costs))
             # Match the lines that start with "transitions:"
             elif line.startswith('transitions:'):
+                print()
                 matches = re.findall(r'T\((\d+),(\d+),(\w)\) = (\d\.\d)', line)
                 for match in matches:
                     p = State(match[0], 1 if match[0] == goal else 0)
@@ -52,7 +56,7 @@ def parse_file(file):
                     transition = Transition(p, q, a)
                     print(transition)
                     transitions[transition] = prob
-                print(transitions)
+                print("T = " + str(transitions))
 
     return states, actions, costs, transitions
 

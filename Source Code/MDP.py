@@ -129,6 +129,7 @@ class MDP:
                         opt_action = a # update the optimal action found for the state s
                         min = c
                 OP[s] = opt_action
+
         return OP  # in the end, the dictionary OP contains the optimal actions for all the sates in the MDP object
 
     def PrintAll(self):
@@ -145,3 +146,9 @@ class MDP:
         for c in self.ImmediateCosts:
             print(str(c) + " = " + str(self.ImmediateCosts[c]))
         print("--------------")
+
+    def WriteOptimalPolicy(self, policy):
+        # writes the optimal policy of the mdp inside a text file named "OptimalPolicy.txt" in the current user directory
+        with open("OptimalPolicy.txt", "w") as f:
+            for state, action in policy.items():
+                f.write(f"{state} = {action}\n")

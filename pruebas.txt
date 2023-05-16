@@ -1,7 +1,0 @@
-states: a, b, c, 24.76, e, f, g, h, i, j, k, l, m*, n, o, p, q, r, s
-
-actions: on1, off2, a.2
-
-costs: c(  on1) =   0.2, c(off2) = 0.0455, c(a.2) = 0.034
-
-transitions: T(a, a, on)   = 0.3, T(a, a, off) = 0.9, T(a, b, on) = 0.5, T(a, b, off) = 0.1, T(b, a, on) = 0.1, T(b, a, off) = 0.7, T(b, c, on) = 0.5, T(b, c, off) = 0.1, T(c, b, on) = 0.1, T(c, b, off) = 0.7, T(b, d, on) = 0.2, T(c, e, on) = 0.2, T(e, f, on) = 0.2, T(f, g, on) = 0.2, T(g, h, on) = 0.2, T(h, i, on) = 0.2, T(i, j, on) = 0.2, T(j, k, on) = 0.2, T(a, c, on) = 0.2, T(c, e, on) = 0.2, T(e, g, on) = 0.2, T(g, i, on) = 0.2, T(i, k, on) = 0.2, T(k, m*, on) = 0.2, T(o, q, on) = 0.2, T(q, s, on) = 0.2, T(a, b, on) = 0.2, T(b, c, on) = 0.2, T(c, d, on) = 0.2, T(d, e, on) = 0.2, T(e, f, on) = 0.2, T(f, g, on) = 0.2, T(h, i, on) = 0.2, T(i, j, on) = 0.2, T(b, b, on) = 0.2, T(b, b, off) = 0.2, T(c, c, on) = 0.2, T(c, c, off) = 0.2, T(d, d, on) = 0.2, T(d, d, off) = 0.2, T(e, e, on) = 0.2, T(e, e, off) = 0.2

@@ -1,6 +1,15 @@
 from setUp import setUp_mdpSolver
 from MDP import State, Transition, Action, MDP
 
+###############################################################
+#                                                             #
+#  This python file was done during the process and was used  #
+#  to try the thermostat problem before creating the parser.  #
+#  ---------------------- EXTRA ----------------------------  #
+#                                                             #
+###############################################################
+
+
 def Thermostat():
     # declare and define the set of states with 22 as a goal state
     S =set()

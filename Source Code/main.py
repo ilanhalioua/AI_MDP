@@ -1,6 +1,9 @@
 from setUp import setUp_mdpSolver, askFile
 
-file = askFile()
+file = askFile() 
+# To try the thermostat problem, user should input: thermostat  
+# (And have all files downloaded in the same directory)
+
 user_mdp = setUp_mdpSolver(file)
 if user_mdp.States and user_mdp.Actions and user_mdp.Transitions and user_mdp.ImmediateCosts:
     V = user_mdp.ValueIteration()
